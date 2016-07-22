@@ -96,3 +96,11 @@ int natural_order(T str1_begin, T str1_end, T str2_begin, T str2_end) {
         }
     }
 }
+
+/*
+ * Overload for types that have .begin() and .end().
+ */
+template<class T1, class T2>
+int natural_order(T1 &str1, T2 &str2) {
+    return natural_order(str1.begin(), str1.end(), str2.begin(), str2.end());
+}

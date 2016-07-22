@@ -39,7 +39,28 @@ const testcase testcases[] = {
         {"01a", "1a", 0},
         {"01a", "1b", -1},
         {"01b", "1a", 1},
+        {"10 ten", "2 two", 1},
+        {"foo1", "foo2", -1},
+        {"foo2", "foo1", 1},
+        {"a10b20c30", "a10b20c31", -1},
+        {"a10b20c31", "a10b20c30", 1},
 };
+
+void check_result(int result, int expected, const testcase &i) {
+    if(result != expected) {
+        std::string msg("Test failure: \"");
+        msg += i.str1;
+        msg += "\", \"";
+        msg += i.str2;
+        msg += "\" order is ";
+        msg += std::to_string(result);
+        msg += " expected ";
+        msg += std::to_string(expected);
+        msg += ".";
+        throw std::logic_error(msg);
+    }
+
+}
 
 void run_test() {
     for(const auto &i: testcases) {
@@ -48,19 +69,12 @@ void run_test() {
         const char *s2b = i.str2;
         const char *s2e = i.str2 + strlen(i.str2);
         int expected = i.expected;
-        int result = natural_order(s1b, s1e, s2b, s2e);
-        if(result != expected) {
-            std::string msg("Test failure: \"");
-            msg += s1b;
-            msg += "\", \"";
-            msg += s2b;
-            msg += "\" order is ";
-            msg += std::to_string(result);
-            msg += " expected ";
-            msg += std::to_string(expected);
-            msg += ".";
-            throw std::logic_error(msg);
-        }
+        int char_result = natural_order(s1b, s1e, s2b, s2e);
+        check_result(char_result, expected, i);
+        std::string s1(i.str1);
+        std::string s2(i.str2);
+        int str_result = natural_order(s1, s2);
+        check_result(str_result, expected, i);
     }
 }
 
