@@ -104,3 +104,11 @@ template<class T1, class T2>
 int natural_order(T1 &str1, T2 &str2) {
     return natural_order(str1.begin(), str1.end(), str2.begin(), str2.end());
 }
+
+/*
+ * Comparator for use in std::sort.
+ */
+template<class T>
+int natural_comparator(T &s1, T &s2) {
+    return natural_order(s1, s2) < 0;
+};

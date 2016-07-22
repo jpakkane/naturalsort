@@ -3,3 +3,5 @@ project('naturalorder', 'cpp',
 
 texe = executable('naturaltest', 'naturaltest.cpp')
 test('Natural ordering', texe)
+
+executable('sortdemo', 'sortdemo.cpp')
