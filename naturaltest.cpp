@@ -28,17 +28,22 @@ struct testcase {
 const testcase testcases[] = {
         {"a", "b", -1},
         {"b", "a", 1},
+        {"a", "a", 0},
         {"a", "", 1},
         {"", "a", -1},
+        {"10", "2", 1},
+        {"2", "10", -1},
+        {"01", "1", 0},
+        {"01a", "1a", 0},
 };
 
 void run_test() {
-    for(int i=0; i<2; ++i) {
-        const char *s1b = testcases[i].str1;
-        const char *s1e = testcases[i].str1 + strlen(testcases[i].str1);
-        const char *s2b = testcases[i].str2;
-        const char *s2e = testcases[i].str2 + strlen(testcases[i].str2);
-        int expected = testcases[i].expected;
+    for(const auto &i: testcases) {
+        const char *s1b = i.str1;
+        const char *s1e = i.str1 + strlen(i.str1);
+        const char *s2b = i.str2;
+        const char *s2e = i.str2 + strlen(i.str2);
+        int expected = i.expected;
         int result = natural_order(s1b, s1e, s2b, s2e);
         if(result != expected) {
             std::string msg("Test failure: \"");
