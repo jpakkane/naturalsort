@@ -15,7 +15,52 @@
 */
 
 #include<naturalorder.h>
+#include<stdexcept>
+#include<cstring>
+#include<cstdio>
+
+struct testcase {
+    const char *str1;
+    const char *str2;
+    int expected;
+};
+
+const testcase testcases[] = {
+        {"a", "b", -1},
+        {"b", "a", 1},
+        {"a", "", 1},
+        {"", "a", -1},
+};
+
+void run_test() {
+    for(int i=0; i<2; ++i) {
+        const char *s1b = testcases[i].str1;
+        const char *s1e = testcases[i].str1 + strlen(testcases[i].str1);
+        const char *s2b = testcases[i].str2;
+        const char *s2e = testcases[i].str2 + strlen(testcases[i].str2);
+        int expected = testcases[i].expected;
+        int result = natural_order(s1b, s1e, s2b, s2e);
+        if(result != expected) {
+            std::string msg("Test failure: \"");
+            msg += s1b;
+            msg += "\", \"";
+            msg += s2b;
+            msg += "\" order is ";
+            msg += std::to_string(result);
+            msg += " expected ";
+            msg += std::to_string(expected);
+            msg += ".";
+            throw std::logic_error(msg);
+        }
+    }
+}
 
 int main(int argc, char **argv) {
+    try {
+        run_test();
+    } catch(const std::logic_error &e) {
+        printf("%s\n", e.what());
+        return 1;
+    }
     return 0;
 }

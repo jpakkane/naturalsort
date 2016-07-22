@@ -16,3 +16,7 @@
 
 #pragma once
 
+template<class T>
+int natural_order(T str1_begin, T str1_end, T str2_begin, T str2_end) {
+    return -1;
+}
