@@ -78,19 +78,21 @@ int natural_order(T str1_begin, T str1_end, T str2_begin, T str2_end) {
                 }
             } else {
                 // str1 was int but str2 was not.
+                return res2.next_char < '0' ? -1 : 1;
             }
         } else if(res2.was_num) {
             assert(!res1.was_num);
             // str1 was not int but str2 was;
+            return res1.next_char < '0' ? -1 : 1;
         } else {
             assert(!res1.was_num);
             assert(!res2.was_num);
-            if(res1.next_char < res2.next_char) {
-                return -1;
-            }
-            if(res1.next_char > res2.next_char) {
-                return 1;
-            }
+        }
+        if(res1.next_char < res2.next_char) {
+            return -1;
+        }
+        if(res1.next_char > res2.next_char) {
+            return 1;
         }
     }
 }
