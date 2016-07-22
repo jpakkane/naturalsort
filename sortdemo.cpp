@@ -27,7 +27,7 @@ int main(int, char**) {
     for(const auto &i: entries) {
         printf("%s\n", i.c_str());
     }
-    std::sort(entries.begin(), entries.end(), natural_comparator<std::string>);
+    std::sort(entries.begin(), entries.end(), natural_less<std::string>);
     printf("\nNatural sort:\n\n");
     for(const auto &i: entries) {
         printf("%s\n", i.c_str());

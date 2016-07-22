@@ -72,11 +72,11 @@ void run_test() {
         const char *s2b = i.str2;
         const char *s2e = i.str2 + strlen(i.str2);
         int expected = i.expected;
-        int char_result = natural_order(s1b, s1e, s2b, s2e);
+        int char_result = natural_compare(s1b, s1e, s2b, s2e);
         check_result(char_result, expected, i);
         std::string s1(i.str1);
         std::string s2(i.str2);
-        int str_result = natural_order(s1, s2);
+        int str_result = natural_compare(s1, s2);
         check_result(str_result, expected, i);
     }
 }

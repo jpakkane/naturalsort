@@ -53,7 +53,7 @@ try_result tryint(T &b, T&e) {
  */
 
 template<class T>
-int natural_order(T str1_begin, T str1_end, T str2_begin, T str2_end) {
+int natural_compare(T str1_begin, T str1_end, T str2_begin, T str2_end) {
     while(true) {
         auto end1 = str1_begin == str1_end;
         auto end2 = str2_begin == str2_end;
@@ -101,14 +101,14 @@ int natural_order(T str1_begin, T str1_end, T str2_begin, T str2_end) {
  * Overload for types that have .begin() and .end().
  */
 template<class T1, class T2>
-int natural_order(T1 &str1, T2 &str2) {
-    return natural_order(str1.begin(), str1.end(), str2.begin(), str2.end());
+int natural_compare(T1 &str1, T2 &str2) {
+    return natural_compare(str1.begin(), str1.end(), str2.begin(), str2.end());
 }
 
 /*
  * Comparator for use in std::sort.
  */
 template<class T>
-int natural_comparator(T &s1, T &s2) {
-    return natural_order(s1, s2) < 0;
+int natural_less(T &s1, T &s2) {
+    return natural_compare(s1, s2) < 0;
 };
