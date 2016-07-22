@@ -44,6 +44,9 @@ const testcase testcases[] = {
         {"foo2", "foo1", 1},
         {"a10b20c30", "a10b20c31", -1},
         {"a10b20c31", "a10b20c30", 1},
+        {"10", "10", 0},
+        {"10a", "10a", 0},
+        {"a10", "a10", 0},
 };
 
 void check_result(int result, int expected, const testcase &i) {
