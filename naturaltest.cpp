@@ -15,6 +15,7 @@
 */
 
 #include<naturalorder.h>
+#include<string>
 #include<stdexcept>
 #include<cstring>
 #include<cstdio>

@@ -21,7 +21,16 @@
 #include<cstdio>
 
 int main(int, char**) {
-    std::vector<std::string> entries{"2 two", "1 one", "10 ten"};
+    std::vector<std::string> entries{"0 0",
+            "0 2",
+            "2 0",
+            "2 2",
+            "0 10",
+            "10 0",
+            "10 10",
+            "2 10",
+            "10 2",
+            };
     std::sort(entries.begin(), entries.end());
     printf("ASCIIbetical sort:\n\n");
     for(const auto &i: entries) {
